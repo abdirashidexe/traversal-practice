@@ -37,7 +37,7 @@ public class TraversalPractice {
       {
         System.out.println(node.value);
       }
-      
+
       printNodesWithOneChild(node.left);
       printNodesWithOneChild(node.right);
     }
@@ -52,6 +52,14 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
+
+    int total = 0;
+    if (node != null)
+    {
+      total += node.value + treeSum(node.left) + treeSum(node.right);
+      return total;
+    }
+
     return 0;
   }
 
