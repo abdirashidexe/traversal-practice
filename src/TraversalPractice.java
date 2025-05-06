@@ -57,6 +57,10 @@ public class TraversalPractice {
     if (node != null)
     {
       total += node.value + treeSum(node.left) + treeSum(node.right);
+      /* can also do this */
+      //total += node.value;
+      //total += treeSum(node.left);
+      //total += treeSum(node.right);
       return total;
     }
 
