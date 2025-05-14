@@ -1,3 +1,9 @@
+import javax.management.Query;
+import javax.swing.tree.TreeNode;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TraversalPractice {
   
   /**
@@ -96,8 +102,35 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    return 0;
+    if (node == null) return 0;
+    if (node.left == null && node.right == null) return 1;
+
+    Queue<Node<T>> queue = new LinkedList<>();
+    queue.add(node);
+    int count = 0;
+
+    while (!queue.isEmpty())
+    {
+      count++;
+
+      for (int i = 0; i < queue.size(); i++)
+      {
+        Node<T> newNode = queue.poll();
+        if (newNode.left != null)
+        {
+          queue.add(newNode.left);
+        }
+
+        if (newNode.right != null)
+        {
+          queue.add(newNode.right);
+        }
+      }
+    }
+
+    return count;
   }
+
 
   public static void main(String[] args) {
     /*
@@ -110,7 +143,7 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
+     Node<Integer> smallTree = new Node<>(99, new Node<>(45, new Node<>(9, null, null), new Node<>(5, null, null)), new Node<>(82, null, new Node<>(16, null, null)));
 
 
     /*
